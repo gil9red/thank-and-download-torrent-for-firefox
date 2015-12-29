@@ -1,10 +1,10 @@
 {
-  "title": "thank-and-download-torrent-for-firefox",
-  "name": "thank-and-download-torrent-for-firefox",
-  "version": "0.0.1",
-  "description": "thank-and-download-torrent-for-firefox",
+  "title": "Thank and download torrent",
+  "name": "Thank_and_download_torrent",
+  "version": "0.0.2",
+  "description": "Thank and download torrent.",
   "main": "index.js",
-  "author": "IPetrash",
+  "author": "Ilya Petrash",
   "engines": {
     "firefox": ">=38.0a1",
     "fennec": ">=38.0a1"
