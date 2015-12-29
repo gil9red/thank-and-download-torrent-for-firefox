@@ -35,6 +35,14 @@ xpi.bat
 Thank you.
 */
 
+// TODO: при запуск первой вкладке кнопка не показывается
+// TODO: плагин иногда перестает работать, лечится переключением на вкладку отличную от URL_TORRENT
+// TODO: плагин иногда не видно на вкладке URL_TORRENT, лечится переключением вкладок
+// TODO: "Спасибо" после клика не обновляется, хотя при вручном клике обновляется
+// TODO: говорить "спасибо" только после скачивания/открытия торрент файла
+// TODO: при переключении вкладок и активации кнопки выполнился скрипт download_and_thank.js не
+// текущей вкладке, а в соседней
+
 
 // Импортирование модулей
 var buttons = require('sdk/ui/button/action');
@@ -60,27 +68,4 @@ function check_tab(tab) {
 
                 // При клике выполняем скрипт
                 onClick: function () {
-                    tab.attach({
-                        contentScriptFile: "./download_and_thank.js"
-                    });
-                }
-            });
-        }
-
-    // Иначе, удаляем кнопку
-    } else {
-        if (download_torrent_mgn_ru != null) {
-            download_torrent_mgn_ru.destroy()
-            download_torrent_mgn_ru = null;
-        }
-    }
-}
-
-
-// Проверяем вкладку переходе на нее
-tabs.on('activate', check_tab);
-
-// Проверяем вкладку при открытии
-tabs.on('open', function(tab){
-    tabs.on('ready', check_tab)
-});
+         
