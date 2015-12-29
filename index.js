@@ -19,7 +19,7 @@ Comments:
 Your preliminary review request has been approved.
 
 Please note the following for the next update:
-1) Your add-on prints debugging information to the Console, which is generally not allowed in production add-ons.
+-1) Your add-on prints debugging information to the Console, which is generally not allowed in production add-ons.
 
 2) Listening to both tabs.on('activate', ...) & tabs.on('ready', ...) can result in the script being run multiple times and needlessly.
 
@@ -40,15 +40,16 @@ Thank you.
 var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
 
-var url_torrent = 'http://torrent.mgn.ru/';
+// Основная часть url раздач, например http://torrent.mgn.ru/viewtopic.php?t=72938
+var URL_TORRENT = 'http://torrent.mgn.ru/viewtopic.php?t=';
 
 // Ссылка на кнопку плагина
 var download_torrent_mgn_ru = null;
 
 
 function check_tab(tab) {
-    // Проверяем что вкладка относится к url_torrent
-    if (tab.url.startsWith(url_torrent)) {
+    // Проверяем что вкладка относится к URL_TORRENT
+    if (tab.url.startsWith(URL_TORRENT)) {
         // Создаем кнопку
         if (download_torrent_mgn_ru == null) {
             // Кнопка клика кнопки скачивания раздачи и кнопки "спасибо" сайта http://torrent.mgn.ru
