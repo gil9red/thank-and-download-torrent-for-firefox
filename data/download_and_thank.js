@@ -1,4 +1,4 @@
-var DEBUG = true;
+var DEBUG = false;
 
 
 // Кликаем, если находим на "Спасибо" и "Скачать раздачу"
@@ -32,13 +32,11 @@ function download_and_thank() {
     var thank_tag = getElementByXpath('//span[@id="VB' + id_torrent + '"]/img');
     DEBUG && console.log("thank_tag: " +  thank_tag);
 
-    if (thank_tag == null) {
-        return;
+    if (thank_tag != null) {
+        // Благодарим за раздачу
+        DEBUG && console.log("thank_tag.click()");
+        thank_tag.click()
     }
-
-    // Благодарим за раздачу
-    DEBUG && console.log("thank_tag.click()");
-    thank_tag.click()
 
     // Кликаем на скачивание
     DEBUG && console.log("download_tag.click()");
