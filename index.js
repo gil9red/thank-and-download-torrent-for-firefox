@@ -1,3 +1,14 @@
+// TODO: исправить
+/*
+General Tests
+0 errors, 1 warning, 0 notices
+Add-on has potentially illegal name.
+
+Warning: Add-on names cannot contain the Mozilla or Firefox trademarks. These names should not be contained in add-on names if at all possible.
+install.rdf
+*/
+
+
 // Импортирование модулей
 var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
