@@ -8,6 +8,12 @@ Warning: Add-on names cannot contain the Mozilla or Firefox trademarks. These na
 install.rdf
 */
 
+/*
+ This add-on is incompatible with Firefox 43.0.1, the latest
+ release of Firefox. Please consider updating your add-on's
+ compatibility info, or uploading a newer version of this add-on.
+*/
+
 
 // Импортирование модулей
 var buttons = require('sdk/ui/button/action');
