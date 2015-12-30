@@ -68,4 +68,18 @@ function check_tab(tab) {
 
                 // При клике выполняем скрипт
                 onClick: function () {
-         
+                    tab.attach({
+                        contentScriptFile: "./download_and_thank.js"
+                    });
+                }
+            });
+        }
+
+    // Иначе, удаляем кнопку
+    } else {
+        if (download_torrent_mgn_ru != null) {
+            download_torrent_mgn_ru.destroy()
+            download_torrent_mgn_ru = null;
+        }
+    }
+}
