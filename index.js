@@ -46,10 +46,20 @@ Thank you.
 // идем на страницу раздачи, *появляется кнопка плагина*, нажимаю на кнопку предыдущей страницы,
 // попадаю на http://torrent.mgn.ru, кнопка плагина не исчезла
 
+var DEBUG = false;
+
+DEBUG && console.log("Start plugin");
 
 // Импортирование модулей
 var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
+
+if (DEBUG) {
+    DEBUG && console.log("Open debug tab");
+
+    tabs.open('http://torrent.mgn.ru');
+    tabs[0].close();
+}
 
 // Основная часть url раздач, например http://torrent.mgn.ru/viewtopic.php?t=72938
 var URL_TORRENT = 'http://torrent.mgn.ru/viewtopic.php?t=';
@@ -86,3 +96,16 @@ function check_tab(tab) {
         }
     }
 }
+
+DEBUG && console.log("Add handlers activate and open tabs");
+
+// Проверяем вкладку при переходе на нее
+tabs.on('activate', check_tab);
+
+// Проверяем вкладку при открытии
+tabs.on('open', function(tab){
+    tabs.on('ready', check_tab)
+});
+
+
+DEBUG && console.log("Finish plugin");
