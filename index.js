@@ -1,14 +1,5 @@
 // TODO: исправить
 /*
-General Tests
-0 errors, 1 warning, 0 notices
-Add-on has potentially illegal name.
-
-Warning: Add-on names cannot contain the Mozilla or Firefox trademarks. These names should not be contained in add-on names if at all possible.
-install.rdf
-*/
-
-/*
  This add-on is incompatible with Firefox 43.0.1, the latest
  release of Firefox. Please consider updating your add-on's
  compatibility info, or uploading a newer version of this add-on.
@@ -45,6 +36,8 @@ Thank you.
 // TODO: проверка кнопки при смене адреса, например, заходим на http://torrent.mgn.ru, после
 // идем на страницу раздачи, *появляется кнопка плагина*, нажимаю на кнопку предыдущей страницы,
 // попадаю на http://torrent.mgn.ru, кнопка плагина не исчезла
+
+
 
 var DEBUG = false;
 
