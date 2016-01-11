@@ -24,20 +24,11 @@ xpi.bat
 Thank you.
 */
 
-// TODO: при запуск первой вкладке кнопка не показывается
-// TODO: плагин иногда перестает работать, лечится переключением на вкладку отличную от URL_TORRENT
-// TODO: плагин иногда не видно на вкладке URL_TORRENT, лечится переключением вкладок
 // TODO: "Спасибо" после клика не обновляется, хотя при вручном клике обновляется
 // TODO: говорить "спасибо" только после скачивания/открытия торрент файла
-// TODO: при переключении вкладок и активации кнопки выполнился скрипт download_and_thank.js не
-// текущей вкладке, а в соседней
-// TODO: проверка кнопки при смене адреса, например, заходим на http://torrent.mgn.ru, после
-// идем на страницу раздачи, *появляется кнопка плагина*, нажимаю на кнопку предыдущей страницы,
-// попадаю на http://torrent.mgn.ru, кнопка плагина не исчезла
 
 
-
-var DEBUG = true;
+var DEBUG = false;
 
 function d(mess) {
     DEBUG && console.log(mess);
@@ -52,19 +43,12 @@ var pageMod = require("sdk/page-mod");
 
 // Основная часть url раздач, например http://torrent.mgn.ru/viewtopic.php?t=72938
 var URL_TORRENT = 'http://torrent.mgn.ru/viewtopic.php?t=';
-URL_TORRENT = "http://habrahabr.ru/";
 
 if (DEBUG) {
     d("Open debug tab");
 
-    tabs.open('http://habrahabr.ru');
-    tabs.open('http://habrahabr.ru/post/273397/');
-
-//    // Open a new tab in a new window and make it active.
-//    tabs.open({
-//        url: "http://www.mysite.com",
-//        inNewWindow: true
-//    });
+    tabs.open('http://torrent.mgn.ru');
+    tabs.open('http://torrent.mgn.ru/viewtopic.php?t=78458');
 
     tabs[0].close();
 }
@@ -113,46 +97,68 @@ function deleteButton() {
 }
 
 
+function checkTab() {
+    var tab = tabs.activeTab;
+    if (tab == null) {
+        d("Start check tab is null. Exit function.");
+        return;
+    }
+
+    d("Start check tab " + tab.url);
+
+    if (tab.url.startsWith(URL_TORRENT)) {
+        createButton();
+    } else {
+        deleteButton();
+    }
+
+    d("Finish check tab " + tab.url);
+}
+
 pageMod.PageMod({
-    //// Not working! Why? O_o
-    //include: "/*habrahabr.ru/*",
-    // TODO: проверить
-    //include: /http:\/\/torrent\.mgn\.ru\/viewtopic\.php\?t=.+/,
-    include: /.+habrahabr.ru\/post.+/,
+    include: ["http://torrent.mgn.ru*",
+              "https://torrent.mgn.ru*"],
+    // The same is true in the regular expression, but it is harder to understand
+    //include: /https?:\/\/torrent\.mgn\.ru\/?.*/,
 
     attachTo: ["existing", "top"],
-    contentScriptWhen: "start",
 
     onAttach: function onAttach(worker) {
         var tab = worker.tab;
 
         d('onAttach ' + worker.url + ' (' + tab.title + ')');
 
-//        createButton();
+        checkTab();
+
         tab.on('activate', function() {
             d('on activate tab ' + tab.url + ' start');
-            createButton();
+            checkTab();
+            //createButton();
             d('on activate tab finish');
         });
 
         tab.on('pageshow', function() {
             d('on pageshow tab ' + tab.url + ' start');
-            createButton();
+            checkTab();
+            //createButton();
             d('on pageshow tab finish');
         });
 
         tab.on('deactivate', function() {
             d('on deactivate tab ' + tab.url + ' start');
-            deleteButton();
+            checkTab();
+            //deleteButton();
             d('on deactivate tab finish');
         });
         tab.on('close', function() {
             d('on close tab ' + tab.url + ' start');
-            deleteButton();
+            checkTab();
+            //deleteButton();
             d('on close tab finish');
         });
     }
 });
+
 
 // TODO: плагин работает с одним окном
 //// When open new tab as new window, need check url tab -- remove button plugin
