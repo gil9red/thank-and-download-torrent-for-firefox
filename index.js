@@ -26,8 +26,6 @@ Thank you.
 
 // TODO: "Спасибо" после клика не обновляется, хотя при вручном клике обновляется
 // TODO: говорить "спасибо" только после скачивания/открытия торрент файла
-// TODO: при закрытии вкладки, при переходе на вкладку не сайта трекера магинфо кнопка может остаться
-// хоть, сайт и не "наш"
 
 
 var DEBUG = false;
@@ -148,14 +146,12 @@ pageMod.PageMod({
 
         tab.on('deactivate', function() {
             d('on deactivate tab ' + tab.url + ' start');
-            checkTab();
-            //deleteButton();
+            deleteButton();
             d('on deactivate tab finish');
         });
         tab.on('close', function() {
             d('on close tab ' + tab.url + ' start');
-            checkTab();
-            //deleteButton();
+            deleteButton();
             d('on close tab finish');
         });
     }
