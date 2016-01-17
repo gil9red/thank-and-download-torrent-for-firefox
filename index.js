@@ -1,29 +1,4 @@
-// TODO: исправить
-/*
- This add-on is incompatible with Firefox 43.0.1, the latest
- release of Firefox. Please consider updating your add-on's
- compatibility info, or uploading a newer version of this add-on.
-*/
-
-/*
-Comments:
-Your preliminary review request has been approved.
-
-Please note the following for the next update:
--1) Your add-on prints debugging information to the Console, which is generally not allowed in production add-ons.
--2) Listening to both tabs.on('activate', ...) & tabs.on('ready', ...) can result in the script being run multiple times and needlessly.
--3) Please use a 'PageMod' instance rather than manually tracking tab events and attaching content scripts.
--https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/page-mod
-
-4) Add-on contains duplicate/hidden/unused/unnecessary files or folders. These complicate the review process and may contain sensitive information about the system you created the XPI on. Such files may also create cause for rejection. Please correct your packaging process so that these files aren't included.
-e.g.:
-README.md
-run.bat
-xpi.bat
-
-Thank you.
-*/
-
+// TODO: проверка url для раздач неверна, например, для книг это http://torrent.mgn.ru/viewtopic.php?p=245768
 // TODO: "Спасибо" после клика не обновляется, хотя при вручном клике обновляется
 // TODO: говорить "спасибо" только после скачивания/открытия торрент файла
 
