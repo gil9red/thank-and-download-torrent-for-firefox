@@ -1,4 +1,7 @@
 // TODO: проверка url для раздач неверна, например, для книг это http://torrent.mgn.ru/viewtopic.php?p=245768
+// Нужно показывать кнопку только для страниц, входящих в http://torrent.mgn.ru/viewtopic.php? и
+// имеющих кнопку скачивания
+
 // TODO: "Спасибо" после клика не обновляется, хотя при вручном клике обновляется
 // TODO: говорить "спасибо" только после скачивания/открытия торрент файла
 
@@ -17,7 +20,7 @@ var tabs = require("sdk/tabs");
 var pageMod = require("sdk/page-mod");
 
 // Основная часть url раздач, например http://torrent.mgn.ru/viewtopic.php?t=72938
-var URL_TORRENT = 'http://torrent.mgn.ru/viewtopic.php?t=';
+var URL_TORRENT = 'http://torrent.mgn.ru/viewtopic.php?';
 
 if (DEBUG) {
     d("Open debug tab");
